@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>로또 당첨번호 생성기</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    button {
+      font-size: 20px;
+      margin: 20px;
+      padding: 10px;
+    }
+
+    #result {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>로또 당첨번호 생성기</h1>
+  <button onclick="generateNumbers()">번호 생성</button>
+  <div id="result"></div>
+
+  <script>
+    function generateNumbers() {
+      const resultDiv = document.getElementById("result");
+      const numbers = [];
+
+      // 1부터 45까지의 숫자를 배열에 저장
+      for (let i = 1; i <= 45; i++) {
+        numbers.push(i);
+      }
+
+      // 6개의 숫자를 무작위로 선택
+      const selectedNumbers = [];
+      for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * numbers.length);
+        selectedNumbers.push(numbers[randomIndex]);
+        numbers.splice(randomIndex, 1); // 선택된 숫자는 배열에서 제거
+      }
+
+      // 선택된 숫자를 오름차순으로 정렬
+      selectedNumbers.sort((a, b) => a - b);
+
+      // 결과를 표시
+      resultDiv.innerText = selectedNumbers.join(", ");
+    }
+  </script>
+</body>
+</html>
